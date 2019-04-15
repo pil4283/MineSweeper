@@ -4,6 +4,8 @@ using Model;
 using Common;
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 public class CGameManager : MonoBehaviour
 {
     /// <summary>
@@ -114,6 +116,8 @@ public class CGameManager : MonoBehaviour
             xPos = xStartPos;
             yPos++;
         }
+
+        //지뢰는 첫 클릭할 때 설치됨
     }
 
     /// <summary>
@@ -312,6 +316,15 @@ public class CGameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 처음 클릭한 곳 주변 타일은 무조건 일반블럭으로 생성
+    /// </summary>
+    /// <param name="firstX"></param>
+    /// <param name="firstY"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="range"></param>
+    /// <returns></returns>
     public bool IsSafeArea(int firstX, int firstY, int x, int y, int range)
     {
         if (firstX - range < x && x < firstX + range &&
