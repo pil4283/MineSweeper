@@ -61,5 +61,18 @@ namespace Common
             
             return true;
         }
+
+        /// <summary>
+        /// 입력한 값이 이메일인지 확인
+        /// </summary>
+        /// <param name="mailAddr"></param>
+        /// <returns></returns>
+        public static bool IsEmail(string mailAddr)
+        {
+            
+            return false;
+        }
+
+
     }
 }
