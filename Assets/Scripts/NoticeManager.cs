@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Common;
+
 /// <summary>
 /// 알림창 매니저 클래스
 /// </summary>
-public class NoticeManager : MonoBehaviour
+public class NoticeManager : Singleton<NoticeManager>
 {
+
     /// <summary>
     /// 알림패널 
     /// </summary>
@@ -32,6 +35,10 @@ public class NoticeManager : MonoBehaviour
     /// 알림창의 제목 텍스트
     /// </summary>
     public Text noticeTitleText;
+    /// <summary>
+    /// 알림문
+    /// </summary>
+    public Text noticeText;
 
     private void Awake()
     {
@@ -41,8 +48,19 @@ public class NoticeManager : MonoBehaviour
     /// <summary>
     /// 알림창 활성화
     /// </summary>
-    public void ActiveNotice()
+    public void ActiveNotice(string noticeTitleText, string noticeText, string okButtonText = "확인", string cancelButtonText = "취소")
+    {
+        noticePanel.SetActive(true);
+        this.noticeTitleText.text = noticeTitleText;
+        this.noticeText.text = noticeText;
+        this.okButtonText.text = okButtonText;
+        this.cancelButtonText.text = cancelButtonText;
+
+    }
+
+    public void DisableNotice()
     {
 
+        noticePanel.SetActive(false);
     }
 }

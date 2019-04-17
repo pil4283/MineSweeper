@@ -357,8 +357,24 @@ public class CGameManager : MonoBehaviour
                 {
                     //TODO:게임오버 메세지창 띄우고 재시작OR메뉴로 돌아가기 만들기
                     blockArray[x, y].GetComponent<MineBlock>().OpenBlock();
+                    NoticeManager.Instance.ActiveNotice("게임 오버", "다시 시작하시겠습니까?", "다시하기", "돌아가기");
+                    CommonFunction.okButtonClick += OkButtonClick;
+                    CommonFunction.cancelButtonClick += CancelButtonClick;
                 }
             }
         }
+    }
+
+    private void OkButtonClick()
+    {
+
+        CommonFunction.okButtonClick -= OkButtonClick;
+        CommonFunction.cancelButtonClick -= CancelButtonClick;
+    }
+    private void CancelButtonClick()
+    {
+
+        CommonFunction.okButtonClick -= OkButtonClick;
+        CommonFunction.cancelButtonClick -= CancelButtonClick;
     }
 }
