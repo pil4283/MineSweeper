@@ -2,19 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+public class MainSceneManager : MonoBehaviour
 {
-    public class MainSceneManager : MonoBehaviour
+
+    public void OnClickMoveSceneButton(string sceneName)
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        public void OnClickButton(string sceneName)
-        {
-            Common.CommonFunction.MoveScene(sceneName);
-        }
+        Common.CommonFunction.MoveScene(sceneName);
     }
 }

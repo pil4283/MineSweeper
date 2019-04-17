@@ -40,11 +40,6 @@ public class NoticeManager : Singleton<NoticeManager>
     /// </summary>
     public Text noticeText;
 
-    private void Awake()
-    {
-        
-    }
-
     /// <summary>
     /// 알림창 활성화
     /// </summary>
@@ -62,5 +57,21 @@ public class NoticeManager : Singleton<NoticeManager>
     {
 
         noticePanel.SetActive(false);
+    }
+    /// <summary>
+    /// 확인창 클릭
+    /// </summary>
+    public void OnOKButtonClick()
+    {
+        //확인이벤트 발생
+        CommonFunction.OnClickOKButton();
+    }
+    /// <summary>
+    /// 취소창 클릭
+    /// </summary>
+    public void OnCancelButtonClick()
+    {
+        //취소이벤트 발생
+        CommonFunction.OnClickCancelButton();
     }
 }

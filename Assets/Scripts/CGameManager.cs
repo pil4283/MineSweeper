@@ -30,6 +30,7 @@ public class CGameManager : MonoBehaviour
         StaticData.maxXSize = 25;
         StaticData.maxYSize = 25;
         StaticData.mineQty = 99;
+        StaticData.randomMine = true;
 
         //맵정보를 가져온 뒤 맵생성
         blockArray = new GameObject[StaticData.maxXSize, StaticData.maxYSize];
@@ -58,8 +59,15 @@ public class CGameManager : MonoBehaviour
                     //첫번째 클릭은 무조건 지뢰가 아니게 조정
                     if (isFirstTouch)
                     {
-                        isFirstTouch = false;
-                        SetRandomMine(tile.x, tile.y);
+                        if(StaticData.randomMine)
+                        {
+                            isFirstTouch = false;
+                            SetRandomMine(tile.x, tile.y);
+                        }
+                        else
+                        {
+                            isFirstTouch = false;
+                        }
                     }
 
                     if (tile.isBlind)
@@ -121,7 +129,15 @@ public class CGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 블럭에 지뢰를 세팅
+    /// 정해진 위치에 지뢰를 세팅
+    /// </summary>
+    private void SetMine()
+    {
+        //Todo : 맵제이슨 형식 완성되면 작성
+    }
+
+    /// <summary>
+    /// 랜덤하게 지뢰를 세팅
     /// </summary>
     /// <param name="firstX"></param>
     /// <param name="firstY"></param>
@@ -307,6 +323,11 @@ public class CGameManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 공백블럭을 오픈하는 과정
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     private void OpenBlockProgress(int x, int y)
     {
         if (blockArray[x, y].GetComponent<MineBlock>().tile.isBlind && blockArray[x, y].GetComponent<MineBlock>().tile.type == 1)
@@ -367,14 +388,17 @@ public class CGameManager : MonoBehaviour
 
     private void OkButtonClick()
     {
-
         CommonFunction.okButtonClick -= OkButtonClick;
         CommonFunction.cancelButtonClick -= CancelButtonClick;
+
+        //Todo : 임시 다시시작, 나중에 초기화함수를 만들어서 그것만 불러오면 다시 시작할 수 있게 변경하기
+        CommonFunction.MoveScene("GameScene");
     }
     private void CancelButtonClick()
     {
-
         CommonFunction.okButtonClick -= OkButtonClick;
         CommonFunction.cancelButtonClick -= CancelButtonClick;
+
+        CommonFunction.MoveScene("MainScene");
     }
 }

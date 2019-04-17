@@ -7,16 +7,16 @@ namespace Common
 {
     public static class CommonFunction
     {
-        public delegate void OnClickOKButton();
-        public static event OnClickOKButton okButtonClick;
+        public delegate void OKButtonClick();
+        public static event OKButtonClick okButtonClick;
 
-        public delegate void OnClickCancelButton();
-        public static event OnClickCancelButton cancelButtonClick;
+        public delegate void CancelButtonClick();
+        public static event CancelButtonClick cancelButtonClick;
 
         /// <summary>
         /// 알림창의 OK버튼 클릭 이벤트
         /// </summary>
-        public static void ClickOKButton()
+        public static void OnClickOKButton()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Common
         /// <summary>
         /// 알림창의 Cancel버튼 클릭 이벤트
         /// </summary>
-        public static void ClickCancelButton()
+        public static void OnClickCancelButton()
         {
             try
             {
