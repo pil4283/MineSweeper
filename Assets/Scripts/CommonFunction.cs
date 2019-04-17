@@ -72,7 +72,29 @@ namespace Common
             
             return false;
         }
+    }
 
-
+    /// <summary>
+    /// 싱글턴 매니저
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    {
+        private static T _instance;
+        public static T Instance
+        {
+            get
+            {
+                if(!_instance)
+                {
+                    _instance = FindObjectOfType(typeof(T)) as T;
+                    if(!_instance)
+                    {
+                        //Todo : 오류처리
+                    }
+                }
+                return _instance;
+            }
+        }
     }
 }
